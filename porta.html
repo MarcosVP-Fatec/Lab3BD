@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <!-- "bibliotecas" -->
+        <!-- <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> -->
+         <!-- <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <p hidden> contador2: <span id="count2">0</span></p>
+         <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"></script> -->
+        <!-- <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>-->
+        <!--  <script src="https://unpkg.com/aframe-area-light-component/dist/aframe-area-light-component.min.js"></script> --> <!-- pesado usar só para desktop -->
+        <!-- referencia para chamar meus arquivos de css e js - **NO CODE PEN NÃO PRECISA DISSO** -->     
+        <link rel="stylesheet" href="style.css">
+        <!-- referenciar .css --> 
+        <!-- <script src="script.js" defer></script>  referenciar .js -->
+      </head>
+    <body>
+      <a-entity light="type: spot; intensity: 100; color: white; distance:0.5" position="9.7 4 2.5 " rotation="90 0 0"></a-entity>
+            <div class="formatter">
+                <div>
+                    <img id="img1-1" crossorigin="" src="https://raw.githubusercontent.com/KurtRodrigues/Project01/master/Imagens%20moldura%202/p1.jpg"> 
+                    <a-image look-at="#player1" id="image1-1" src="#img1-1" scale="0.37 2.01 2" transparent="true" position="11.183 2.54 -2.54" visible="" width="2" material="" geometry=""></a-image>
+                    <a-image look-at="#player1" id="pisoImagem2" src="#pisoImg1" scale="0.89 0.39 1.81" transparent="true" position="8.33298 0.20542 2.98036" visible="false" width="2" material="side: back; wireframeLinewidth: 20" geometry="" rotation="90 0 0"></a-image>
+                    <a-image look-at="#player2" id="pisoImagem1" src="#pisoImg2" scale="0.43 0.34 1.81" transparent="true" position="6.47611 0.20542 2.96398" visible="false" width="2" material="side: back; wireframeLinewidth: 20" geometry="" rotation="90 0 0"></a-image>
+                    <a-image look-at="#player1" id="pisoImagem3" src="#pisoImg1" scale="0.89 0.39 1.81" transparent="true" position="3.23674 0.20542 2.98036" visible="false" width="2" material="side: back; wireframeLinewidth: 20" geometry="" rotation="90 0 0"></a-image>
+                    <a-image look-at="#player2" id="pisoImagem4" src="#pisoImg2" scale="0.43 0.34 1.81" transparent="true" position="1.20136 0.20542 2.96398" visible="false" width="2" material="side: back; wireframeLinewidth: 20" geometry="" rotation="90 0 0"></a-image>
+                </div>
+                <div>
+                    What is Lorem Ipsum?
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+                    Why do we use it?
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
+                    Where does it come from?
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+
+                    Where can I get some?
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+            </div>
+        </a-scene>
+    </body>
+</html>
