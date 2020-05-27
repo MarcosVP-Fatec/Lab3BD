@@ -1,0 +1,9 @@
+.formatter {
+    display: flex;
+    flex-direction:  row;
+}
+
+.formatter div {
+    width: 50%;
+    height: 100%;
+}
