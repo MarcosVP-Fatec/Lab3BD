@@ -8,3 +8,4 @@
  c) Se o usuário clicar na ordem certa a peça fica verde.
  d) Se todas as peças forem montadas corretamente a porta pontada começa a girar e o painel de seleção começa a piscar
  Veja exemplo no readme.gif.
+

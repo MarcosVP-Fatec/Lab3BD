@@ -120,7 +120,8 @@ function finalizaPecaMontada(){
       document.querySelector("#peca"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0;loop: 5;');
             
     }
-  
+    
+
     //Após 5 segundos finaliza tudo 
     setTimeout(function () {
       
