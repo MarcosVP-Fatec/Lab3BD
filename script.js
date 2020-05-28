@@ -1,154 +1,159 @@
 //--------------------------------------------------
-// contador 2 
-var counter2 = 0;
+// numPecaMontada 
+let numPecaMontada = 0;
+
+//--------------------------------------------------
+// Inicia os objetos de seleção
+let moldura = [ document.querySelector("#image1-1"),
+                document.querySelector("#image2-1"),
+                document.querySelector("#image3-1"),
+                document.querySelector("#image4-1") ];
+
+let peca3D_1 = document.querySelector("#peca1_1");
+let peca3D_2 = document.querySelector("#peca2_2");
+
+//--------------------------------------------------
+// Inicia os objetos de seleção - Moldura
+let obj = [ {peça3D : document.querySelector("#peca1_1") ,
+             numero : 1                                } ,
+            {peça3D : document.querySelector("#peca2_2") ,
+             numero : 2                                } ,
+            {peça3D : document.querySelector("#peca3_3") ,
+             numero : 3                                } ,
+            {peça3D : document.querySelector("#peca4_4") ,
+             numero : 4                                } ];
+
+//-------------------------------------------------------------------------------
+// Mistura as peças
+shuffle(obj);                
+
+window.addEventListener("load", start2, false);
+
+//-------------------------------------------------------------------------------
+// Atribui a função click para as seleções
+moldura[0].addEventListener("click", function(){ onClickable(0) } );
+moldura[1].addEventListener("click", function(){ onClickable(1) } );
+moldura[2].addEventListener("click", function(){ onClickable(2) } );
+moldura[3].addEventListener("click", function(){ onClickable(3) } );
+
+//------------------------------------------------------------------------------------
+// Ao clicar de algum componente - index = Muldura
+//------------------------------------------------------------------------------------
+function onClickable( index ){
+
+  if ( (numPecaMontada + 1) == obj[index]["numero"]){
+    count2();
+    moldura[index].setAttribute('src',"images/p" + obj[index]["numero"] + "_green.png");
+    exibirPeca(obj[index]["numero"]);
+    //Se a última peça foi clicada então faz a finalização
+    if (obj[index]["numero"] == 4){
+      setTimeout( function () { finalizaPecaMontada(); }, 1000) 
+    }
+
+
+  } else {
+
+    moldura[index].setAttribute('src',"images/p" + obj[index]["numero"] + "_red.png");
+    setTimeout( function() {
+      resetNumPecaMontada();
+    }, 2000);
+
+  }
+
+}
+
+//------------------------------------------------------------------------------------
+// Exibir a peça escolhida conforme seu número sequencial de montagem
+function exibirPeca( numero ){
+  document.querySelector("#peca" + numero + "_" + numero ).object3D.visible = true;
+}
+
+//------------------------------------------------------------------------------------
+// Ocultar a peça escolhida conforme seu número sequencial de montagem
+function ocultarPeca( numero ){
+  document.querySelector("#peca" + numero + "_" + numero ).object3D.visible = false;
+}
 
 function start2() {
   var button = document.getElementById("#black");
 };
 
+//-----------------------------------------------------------------------------
+// função que incrementa o contacor posicionador
 function count2() { // counter "+" sum
-  counter2 = parseInt(document.getElementById("count2").textContent);
-  counter2++;
-  document.getElementById("count2").innerHTML = counter2;
+  numPecaMontada++;
 };
 
 function countSub2() { // counter "-" sub
-  counter2 = parseInt(document.getElementById("count2").textContent);
-  counter2--;
-  document.getElementById("count2").innerHTML = counter2;
+  numPecaMontada--;
 };
 
-function resetcounter2() {
-  counter2 = parseInt(document.getElementById("count2").textContent);
-  counter2 = 0;
-  document.getElementById("count2").innerHTML = counter2;
+//--------------------------------------------------------------------------------------------------------
+// Reinicia o contador quando necessário
+// Mistura novamente os componentes
+// Coloca todas as imagens em fundo azul.
+function resetNumPecaMontada() {
+  numPecaMontada = 0;
+  shuffle(obj); //Mistura de novo.
+  for (let index = 0; index < obj.length; index++) {
+    ocultarPeca(index+1);
+  }
 }
-window.addEventListener("load", start2, false);
-//==============================================================================
-// Seleção segunda moldura
-document.querySelector("#image1-1").addEventListener("click", function () {
-  //(seleção do objeto        +    aguardar até que ele seja clicado)  
-  window.open("./porta.html", "_self");
-  var el = document.querySelector("#peca1_1");
-  el.object3D.visible = true;
 
-  if (counter2 == 0) {
-
-    count2();
-
+//--------------------------------------------------------------------------------------------------------
+// Misturador - Recoloca as peças em loais diferentes
+// Coloca todas as imagens em modo azul.
+function shuffle(o) {
+  for (let j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  for (let index = 0; index < moldura.length; index++) {
+    moldura[index].setAttribute('src',"images/p" + o[index]["numero"] + ".jpg") 
   }
+}
 
-  console.log(counter2);
-});
-document.querySelector("#image2-1").addEventListener("click", function () {
-  //(seleção do objeto        +    aguardar até que ele seja clicado)  
-  
-  var el = document.querySelector("#peca2_2");
+//- -------------------------------------------------------------------------------------------------------
+// Executa a finalização
+function finalizaPecaMontada(){
 
-  if (counter2 == 1) {
-    el.object3D.visible = true;
-    count2();
-  }
-  if (counter2 > 1) {
-    el.object3D.visible = true;
-  }
-  if (counter2 == 0) {
-    el.object3D.visible = true;
+  if (numPecaMontada == 4) {
+
+    let el2 = document.querySelector("#alerta2");
     setTimeout(function () {
-      el.object3D.visible = false;;
-    }, 900);
-  }
-  console.log(counter2); // controle visual da variavel para saber se a logica esta certa até esse ponto 
-});
-document.querySelector("#image3-1").addEventListener("click", function () {
-  //(seleção do objeto        +    aguardar até que ele seja clicado)  
-
-  var el = document.querySelector("#peca3_3");
-
-  if (counter2 == 2) {
-    el.object3D.visible = true;
-    count2();
-  }
-  if (counter2 > 2) {
-    el.object3D.visible = true;
-  }
-
-  if (counter2 < 2) {
-    el.object3D.visible = true;
-    setTimeout(function () {
-      el.object3D.visible = false;;
-    }, 900);
-  }
-  console.log(counter2);
-});
-document.querySelector("#image4-1").addEventListener("click", function () {
-  //(seleção do objeto        +    aguardar até que ele seja clicado)  
-  window.open("./macaneta.html");
-  var molduraPeca = document.querySelector("#img4-1");
-  molduraPeca.setAttribute('src', '#img3-1');
-  console.log("Marcos Lindu")
-  var el = document.querySelector("#peca4_4");
-
-  if (counter2 >= 3) {
-
-
-    el.object3D.visible = true;
-    count2();
-    console.log(counter2);
-    //if (counter2 == 4) {
-    var el2 = document.querySelector("#alerta2");
-    setTimeout(function () {
+      
       el2.object3D.visible = true;
-      el2.setAttribute('animation', 'property: model-opacity; dur: 1000; to: 1 ;loop: 3;');;
+      el2.setAttribute('animation', 'property: model-opacity; dur: 1000; to: 1 ;loop: 5;');;
 
-    }, 100);
-    //peca4_4
+    }, 500);
+    
+    //Rotaciona a peça devagar 5 vezes.
+    for (let n = 1; n < obj.length+1; n++) {
 
+      document.querySelector("#peca"+n+"_"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0;loop: 5;');
+            
+    }
+     
 
-    var el3 = document.querySelector("#peca1_1");
-    el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0 ;loop: 1;');
-    var el3 = document.querySelector("#peca2_2");
-    el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0 ;loop: 1;');
-    var el3 = document.querySelector("#peca3_3");
-    el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0 ;loop: 1;');
-    var el3 = document.querySelector("#peca4_4");
-    el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0 ;loop: 1;');;
-
-
+    //Após 5 segundos finaliza tudo 
     setTimeout(function () {
-      var el2 = document.querySelector("#alerta2");
+      
+      let el2 = document.querySelector("#alerta2");
       el2.object3D.visible = false;
       el2.setAttribute('animation', 'property: model-opacity; dur: 1000; to: 0 ;loop: false;');
-      resetcounter2();
-      var el = document.querySelector("#peca1_1");
-      el.object3D.visible = false;
-      var el = document.querySelector("#peca2_2");
-      el.object3D.visible = false;
-      var el = document.querySelector("#peca3_3");
-      el.object3D.visible = false;
-      var el = document.querySelector("#peca4_4");
-      el.object3D.visible = false;
-      console.log(counter2);
-      var el3 = document.querySelector("#peca1_1");
-      el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');
-      var el3 = document.querySelector("#peca2_2");
-      el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');
-      var el3 = document.querySelector("#peca3_3");
-      el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');
-      var el3 = document.querySelector("#peca4_4");
-      el3.setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');;
 
+      //Rotaciona a peça devagar 5 vezes.
+      for (let n = 1; n < obj.length+1; n++) {
 
-    }, 4800);
+        document.querySelector("#peca"+n+"_"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');
+        
+      }
 
-  } else {
-    el.object3D.visible = true;
-    setTimeout(function () {
-      el.object3D.visible = false;;
-    }, 900);
+      resetNumPecaMontada();
+
+    }, 7500);
+
   }
 
-});
+};
+
 // Opacidade 
 AFRAME.registerComponent('model-opacity', {
   schema: {
@@ -172,6 +177,7 @@ AFRAME.registerComponent('model-opacity', {
     });
   }
 });
+
 //==============================================================================
 // botões 
 document.querySelector("#tras").addEventListener("click", function () {
@@ -444,6 +450,8 @@ document.querySelector("#tras").addEventListener("click", (e) => {
     document.getElementById("count").innerHTML = counter;
   }
 })
+
+
 //=============
 
 // HAND TRACK 
