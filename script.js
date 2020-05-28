@@ -9,19 +9,9 @@ let moldura = [ document.querySelector("#image1-1"),
                 document.querySelector("#image3-1"),
                 document.querySelector("#image4-1") ];
 
-let peca3D_1 = document.querySelector("#peca1_1");
-let peca3D_2 = document.querySelector("#peca2_2");
-
 //--------------------------------------------------
 // Inicia os objetos de seleção - Moldura
-let obj = [ {peça3D : document.querySelector("#peca1_1") ,
-             numero : 1                                } ,
-            {peça3D : document.querySelector("#peca2_2") ,
-             numero : 2                                } ,
-            {peça3D : document.querySelector("#peca3_3") ,
-             numero : 3                                } ,
-            {peça3D : document.querySelector("#peca4_4") ,
-             numero : 4                                } ];
+let obj = [ 1, 2, 3, 4 ];
 
 //-------------------------------------------------------------------------------
 // Mistura as peças
@@ -41,19 +31,19 @@ moldura[3].addEventListener("click", function(){ onClickable(3) } );
 //------------------------------------------------------------------------------------
 function onClickable( index ){
 
-  if ( (numPecaMontada + 1) == obj[index]["numero"]){
+  if ( (numPecaMontada + 1) == obj[index]){
     count2();
-    moldura[index].setAttribute('src',"images/p" + obj[index]["numero"] + "_green.png");
-    exibirPeca(obj[index]["numero"]);
+    moldura[index].setAttribute('src',"images/p" + obj[index] + "_green.png");
+    exibirPeca(obj[index]);
     //Se a última peça foi clicada então faz a finalização
-    if (obj[index]["numero"] == 4){
+    if (obj[index] == 4){
       setTimeout( function () { finalizaPecaMontada(); }, 1000) 
     }
 
 
   } else {
 
-    moldura[index].setAttribute('src',"images/p" + obj[index]["numero"] + "_red.png");
+    moldura[index].setAttribute('src',"images/p" + obj[index] + "_red.png");
     setTimeout( function() {
       resetNumPecaMontada();
     }, 2000);
@@ -65,13 +55,13 @@ function onClickable( index ){
 //------------------------------------------------------------------------------------
 // Exibir a peça escolhida conforme seu número sequencial de montagem
 function exibirPeca( numero ){
-  document.querySelector("#peca" + numero + "_" + numero ).object3D.visible = true;
+  document.querySelector("#peca" + numero  ).object3D.visible = true;
 }
 
 //------------------------------------------------------------------------------------
 // Ocultar a peça escolhida conforme seu número sequencial de montagem
 function ocultarPeca( numero ){
-  document.querySelector("#peca" + numero + "_" + numero ).object3D.visible = false;
+  document.querySelector("#peca" + numero  ).object3D.visible = false;
 }
 
 function start2() {
@@ -106,7 +96,7 @@ function resetNumPecaMontada() {
 function shuffle(o) {
   for (let j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
   for (let index = 0; index < moldura.length; index++) {
-    moldura[index].setAttribute('src',"images/p" + o[index]["numero"] + ".jpg") 
+    moldura[index].setAttribute('src',"images/p" + o[index] + ".jpg") 
   }
 }
 
@@ -127,11 +117,10 @@ function finalizaPecaMontada(){
     //Rotaciona a peça devagar 5 vezes.
     for (let n = 1; n < obj.length+1; n++) {
 
-      document.querySelector("#peca"+n+"_"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0;loop: 5;');
+      document.querySelector("#peca"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 360 0;loop: 5;');
             
     }
-     
-
+  
     //Após 5 segundos finaliza tudo 
     setTimeout(function () {
       
@@ -142,7 +131,7 @@ function finalizaPecaMontada(){
       //Rotaciona a peça devagar 5 vezes.
       for (let n = 1; n < obj.length+1; n++) {
 
-        document.querySelector("#peca"+n+"_"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');
+        document.querySelector("#peca"+n).setAttribute('animation', 'property: rotation; dur: 1000; to:0 0 0 ;loop: false;');
         
       }
 
