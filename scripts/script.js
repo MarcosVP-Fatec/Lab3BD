@@ -46,12 +46,12 @@ function onClickable( index ){
   if ( (numPecaMontada + 1) == obj[index]){
     count2();
     moldura[index].setAttribute('src',"images/p" + obj[index] + "_green.png");
-    exibirPeca(obj[index]);
+    for (let index = 0; index < 1000; index++) {}
+    exibirPeca(obj[index]); //Traz a peça até a posição de visualização.
     //Se a última peça foi clicada então faz a finalização
-    if (obj[index] == 4){
-      setTimeout( function () { finalizaPecaMontada(); }, 1000) 
+    if (obj[index] == obj.length){
+      setTimeout( function () { finalizaPecaMontada(); }, 4000) 
     }
-
 
   } else {
 
@@ -67,11 +67,13 @@ function onClickable( index ){
 //------------------------------------------------------------------------------------
 // Exibir a peça escolhida conforme seu número sequencial de montagem
 function exibirPeca( numero ){
+
   const temp = document.querySelector("#peca" + numero  );
-  window.alert("-"+temp.object3D.position.x+"-");
-  // temp.setAttribute('animation', 'property: position; dur: 1200; from: 12 0 5; to: ' + temp.object3D.position.x + ' ' + temp.object3D.position.y + ' ' + temp.object3D.position.z + ';loop: false;');
-  temp.setAttribute('animation', 'property: position; dur: 1200; from: 12 0 5; to: 10 0 0;loop: false;');
+
+  temp.setAttribute('animation', 'property: position; dur: 2000; from: 12 0 1; to: '+temp.object3D.position.x + " " + temp.object3D.position.y + " " + temp.object3D.position.z+';loop: false;');
+
   temp.object3D.visible = true;
+
 }
 
 //------------------------------------------------------------------------------------
