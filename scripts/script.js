@@ -9,6 +9,20 @@ let moldura = [ document.querySelector("#image1-1"),
                 document.querySelector("#image3-1"),
                 document.querySelector("#image4-1") ];
 
+let camera   = window.document.querySelector("#Camera_Cursor");
+let myCursor = window.document.querySelector("#mycursor");
+
+
+//-------------------------------------------------------
+// Este comando é necessário para que os clicks funcionem
+//-------------------------------------------------------
+window.onload = () => {
+  if (AFRAME.utils.device.isMobile()){  //MOBILE
+    myCursor.setAttribute('cursor','rayOrigin: cursor; fuse: true');
+  } else {                              //DESKTOP
+    myCursor.setAttribute('cursor','rayOrigin: mouse; fuse: false');
+  }
+}
 //--------------------------------------------------
 // Inicia os objetos de seleção - Moldura
 let obj = [ 1, 2, 3, 4 ];
@@ -16,8 +30,6 @@ let obj = [ 1, 2, 3, 4 ];
 //-------------------------------------------------------------------------------
 // Mistura as peças
 shuffle(obj);                
-
-window.addEventListener("load", start2, false);
 
 //-------------------------------------------------------------------------------
 // Atribui a função click para as seleções
@@ -55,7 +67,11 @@ function onClickable( index ){
 //------------------------------------------------------------------------------------
 // Exibir a peça escolhida conforme seu número sequencial de montagem
 function exibirPeca( numero ){
-  document.querySelector("#peca" + numero  ).object3D.visible = true;
+  const temp = document.querySelector("#peca" + numero  );
+  window.alert("-"+temp.object3D.position.x+"-");
+  // temp.setAttribute('animation', 'property: position; dur: 1200; from: 12 0 5; to: ' + temp.object3D.position.x + ' ' + temp.object3D.position.y + ' ' + temp.object3D.position.z + ';loop: false;');
+  temp.setAttribute('animation', 'property: position; dur: 1200; from: 12 0 5; to: 10 0 0;loop: false;');
+  temp.object3D.visible = true;
 }
 
 //------------------------------------------------------------------------------------
@@ -63,10 +79,6 @@ function exibirPeca( numero ){
 function ocultarPeca( numero ){
   document.querySelector("#peca" + numero  ).object3D.visible = false;
 }
-
-function start2() {
-  var button = document.getElementById("#black");
-};
 
 //-----------------------------------------------------------------------------
 // função que incrementa o contacor posicionador
@@ -236,113 +248,49 @@ document.querySelector("#setaDireita").addEventListener("click", function () {
 
 });
 //==========================================================================
-//pontos para movimentação no VR 
+// pontos para movimentação no VR 
+// seleção do objeto + aguardar até que ele seja clicado 
 document.querySelector("#piso_1").addEventListener("click", function () {
-  //seleção do objeto + aguardar até que ele seja clicado 
+    camera.object3D.position.set(-5, 0, 3.5); // alterar posição do objeto 
+  });
 
-  var el = document.querySelector("#CameraPosition"); // criação da variavel e receber objeto
-  el.object3D.position.set(-5, 0, 3.5); // alterar posição do objeto 
-});
 document.querySelector("#piso0").addEventListener("click", function () {
-  //seleção do objeto + aguardar até que ele seja clicado 
+    camera.object3D.position.set(0, 0, 3.5); // alterar posição do objeto 
+  });
 
-  var el = document.querySelector("#CameraPosition"); // criação da variavel e receber objeto
-  el.object3D.position.set(0, 0, 3.5); // alterar posição do objeto 
-});
 document.querySelector("#piso1").addEventListener("click", function () {
-  //seleção do objeto + aguardar até que ele seja clicado 
+    camera.object3D.position.set(5, 0, 3.5); // alterar posição do objeto
+  });
 
-  var el = document.querySelector("#CameraPosition"); // criação da variavel e receber objeto
-  el.object3D.position.set(5, 0, 3.5); // alterar posição do objeto
-
-
-});
 document.querySelector("#piso2").addEventListener("click", function () {
-  //seleção do objeto + aguardar até que ele seja clicado 
+    camera.object3D.position.set(10, 0, 3.5); // alterar posição do objeto
+  });
 
-  var el = document.querySelector("#CameraPosition"); // criação da variavel e receber objeto
-  el.object3D.position.set(10, 0, 3.5); // alterar posição do objeto
-  //-----------------------------------------
-  //ativar alerta 
-  /*var el = document.querySelector("#alerta")
-  el.object3D.visible = true;
-  var el = document.querySelector("#alerta")  
-  el.setAttribute('animation', 'property: model-opacity; dur: 1500; from: 1; to: 0.5 ;loop: true;' ); // alteração da da animação  */
-  //------------------------------------------  
-
-});
-//==================================================================================
-/* Modify in => Desktop 
-             => mobile cursor
-             => mobile (VR) */ //função para verificar se esta rodando em mobile e aplicar alteraçoes 
-function CheckMobile() {
-
-  if (AFRAME.utils.device.isMobile() == false) // DESKTOP
-  {
-    var el = document.querySelector("#mycursor");
-    el.setAttribute('cursor', 'rayOrigin: mouse;fuse: false');
-  } else {
-    var el = document.querySelector("#mycursor"); // MOBILE 
-    el.setAttribute('cursor', 'rayOrigin: cursor;fuse: true');
-    el.object3D.visible = true;
-  }
-
-}
 document.querySelector('a-scene').addEventListener('enter-vr', function () {
+  
   console.log("MODO VR"); // VR 
 
-  var el = document.querySelector("#mycursor");
-  el.setAttribute('cursor', 'rayOrigin: cursor; fuse: true;');
-  el.object3D.visible = true;
+  myCursor.setAttribute('cursor', 'rayOrigin: cursor; fuse: true;');
+  myCursor.object3D.visible = true;
 
-  var el = document.querySelector("#CameraPosition");
-  el.object3D.position.set(0, 0, 3.5);
+  camera.object3D.position.set(0, 0, 3.5);
 
-  var el = document.querySelector("#piso_1");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso_11");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso0");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso01");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso1");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso11");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso2");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso21");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#pisoImagem1");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#pisoImagem2");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#pisoImagem3");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#pisoImagem4");
-  el.object3D.visible = true;
-
-  var el = document.querySelector("#piso_luz1");
-  el.object3D.visible = true;
+  document.querySelector("#piso_1").object3D.visible = true;
+  document.querySelector("#piso_11").object3D.visible = true;
+  document.querySelector("#piso0").object3D.visible = true;
+  document.querySelector("#piso01").object3D.visible = true;
+  document.querySelector("#piso1").object3D.visible = true;
+  document.querySelector("#piso11").object3D.visible = true;
+  document.querySelector("#piso2").object3D.visible = true;
+  document.querySelector("#piso21").object3D.visible = true;
+  document.querySelector("#pisoImagem1").object3D.visible = true;
+  document.querySelector("#pisoImagem2").object3D.visible = true;
+  document.querySelector("#pisoImagem3").object3D.visible = true;
+  document.querySelector("#pisoImagem4").object3D.visible = true;
+  document.querySelector("#piso_luz1").object3D.visible = true;
 
 });
-//==================================================================================
-// rodar a função 'checkmobile' quando a pagina é carregada
-window.onload = function () {
-  CheckMobile();
-};
+
 //==========================================================
 // contador para a logica de montagem das peças 
 var counter = 0;
@@ -360,7 +308,7 @@ function countSub() { // counter "-" sub
   counter--;
   document.getElementById("count").innerHTML = counter;
 }; // subtrair 
-window.addEventListener("load", start, false);
+//window.addEventListener("load", start, false);
 //=============================================
 // Botao avançar '>'   
 document.querySelector("#frente").addEventListener("click", (e) => { // seleção do objeto e aguardar o click
@@ -442,96 +390,3 @@ document.querySelector("#tras").addEventListener("click", (e) => {
 })
 
 
-//=============
-
-// HAND TRACK 
-/*
-const button = document.getElementById('button');
-const video = document.getElementById("myvideo");
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-let trackButton = document.getElementById("trackbutton");
-let updateNote = document.getElementById("updatenote")
-let isVideo = false;
-let model = null;
-
-
-const modelParams = {
-    flipHorizontal: true,  // flip video (like mirror) 
-    maxNumBoxes: 1,  //number of simultaneous detections     
-    iouThreshold: 0.6,   // iouThreshold(average) = intersection : all object     
-    scoreThreshold: 0.7,  //acuracia 
-    imageScaleFactor: 0.7, //retuction video input 
-}
-
-function startVideo() {
-    handTrack.startVideo(video).then(function (status) {
-        console.log("video started", status);
-        if (status) {
-            updateNote.innerText = "Video started. Now tracking"
-            isVideo = true
-            audio=false // ****>>>>>VERIFICAR SE ESTA FUNCIONANDO <<<<
-            runDetection()
-        } else {
-            updateNote.innerText = "Please enable video"
-        }
-    });
-}
-
-function toggleVideo() { // ON , OFF detecção
-    if (!isVideo) {
-        updateNote.innerText = "Starting video"
-        startVideo();
-    } else {
-        updateNote.innerText = "Stopping video"
-        handTrack.stopVideo(video)
-        isVideo = false;
-        updateNote.innerText = "Video stopped"
-    }
-}
-
-function runDetection() {
-    model.detect(video).then(predictions => {
-        console.log("Predictions: ", predictions);
-        model.renderPredictions(predictions, canvas, context, video);
-        if (isVideo) {
-            requestAnimationFrame(runDetection);
-        }
-        if (predictions.length > 0) {
-      changeData(predictions[0].bbox); //[1º x , 2º y , 3° width , 4º height]
-    }
-    
-    });
-}
-
-// Load the model.
-handTrack.load(modelParams).then(lmodel => {
-    // detect objects in the image.
-    model = lmodel
-    updateNote.innerText = "Loaded Model!"
-    trackButton.disabled = false
-});
-//===================================================
-
-function changeData(value) {
-  let midvalX = value[0] + value[2] / 2;
-  let midvalY = value[1] + value[3] / 2;
-
-  document.querySelector(".hand-1 #hand-x span").innerHTML = midvalX;
-  document.querySelector(".hand-1 #hand-y span").innerHTML = midvalY;
-
-  moveTheBox({ x: (midvalX - 300) / 600, y: (midvalY - 250) / 500 });
-}
-
-//Metodo para renderizar de acordo com as coordenadas
-function moveTheBox(value) {
-  
-  
-  var el = document.querySelector("#mycursor");
-  el.object3D.position.x = ((window.innerWidth * value.x) / window.innerWidth) * 5;
-  el.object3D.position.y = -((window.innerHeight * value.y) / window.innerHeight) * 5;
- 
-  renderer.render(scene, camera);
-}
-*/
-//==============
