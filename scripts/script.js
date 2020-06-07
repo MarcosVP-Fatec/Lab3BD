@@ -51,7 +51,7 @@ function onClickable( index ){
     let tempo = exibirPeca(obj[index]); //Traz a peça até a posição de visualização.
     //Se a última peça foi clicada então faz a finalização
     if (obj[index] == obj.length){
-      setTimeout( function() { finalizaPecaMontada(); }, tempo + 3000);
+      setTimeout( function() { finalizaPecaMontada(); }, tempo + 5000);
     }
 
   } else {
