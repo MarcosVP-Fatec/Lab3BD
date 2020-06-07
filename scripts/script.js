@@ -48,10 +48,10 @@ function onClickable( index ){
   if ( (numPecaMontada + 1) == obj[index]){
     numPecaMontada++;
     moldura[index].setAttribute('src',"images/p" + obj[index] + "_green.png");
-    exibirPeca(obj[index]); //Traz a peça até a posição de visualização.
+    let tempo = exibirPeca(obj[index]); //Traz a peça até a posição de visualização.
     //Se a última peça foi clicada então faz a finalização
     if (obj[index] == obj.length){
-      setTimeout( function() { finalizaPecaMontada(); }, 6000);
+      setTimeout( function() { finalizaPecaMontada(); }, tempo + 3000);
     }
 
   } else {
@@ -92,20 +92,27 @@ function exibirPeca( numero ){
     temp.setAttribute('animation', 'property: position; dur: 1000; from: -12 0 0; to: 8 -0.15 -2.5 ;loop: false;');
   }, tempo);
 
-  tempo += 1000;
+  tempo += 1010;
   setTimeout( function() {
-    temp.setAttribute('animation', `property: position; dur: 500; from: ${posicaoDaPeça(temp)}; to: 14.2 0 -2.5;loop: false;`);
+    temp.setAttribute('animation', `property: position; dur: 500; from: ${posicaoDaPeça(temp)}; to: 16.2 -0.15 -2.5;loop: false;`);
   },tempo)
 
-  tempo += 500;
+  tempo += 510;
   setTimeout( function() {
-    temp.setAttribute('animation', `property: position; dur: 500; from: ${posicaoDaPeça(temp)}; to: 13.5 0 0;loop: false;`);
+    temp.setAttribute('animation', `property: position; dur: 500; from: ${posicaoDaPeça(temp)}; to: 13 0 0;loop: false;`);
   },tempo)
 
-  tempo += 500;
+  tempo += 510;
+  setTimeout( function() {
+    temp.setAttribute('animation', 'property: rotation; dur: 4000; to:0 -360 0;');
+  },tempo)
+
+  tempo += 4200;
   setTimeout( function() {
     temp.setAttribute('animation', `property: position; dur: 1000; from: ${posicaoDaPeça(temp)}; to: ${x} ${y} ${z};loop: false;`);
   },tempo)
+
+  return tempo;
 
 }
 
