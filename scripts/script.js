@@ -2,6 +2,7 @@
 // numPecaMontada = Controle da peça que está montada atualmente
 //------------------------------------------------------------------------------------
 let numPecaMontada = 0;
+let numTentativas = 0;
 
 //------------------------------------------------------------------------------------
 // Inicia os objetos de seleção
@@ -124,7 +125,7 @@ function ocultarPeca( numero ){
 }
 
 //------------------------------------------------------------------------------------
-// Gigar Peças no eixo X
+// Girar Peças no eixo X
 //------------------------------------------------------------------------------------
 function girarPeçasEixoX( grau , durante , tempoStart ){
   setTimeout(() => {
@@ -147,6 +148,12 @@ function resetNumPecaMontada() {
   for (let index = 1; index <= obj.length; index++) {
     ocultarPeca(index);
   }
+
+  numTentativas = numTentativas + 1;
+  if (numTentativas>2){
+    numTentativas = 0;
+    window.location.href = "./index.html";
+  } 
   // for (let n = 1; n < obj.length+1; n++) {
   //   document.querySelector("#peca"+n).getAttribute('animation','attribute: visible; to: false; dur: 1; repeat: 0;');
   // }
