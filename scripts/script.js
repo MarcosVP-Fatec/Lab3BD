@@ -241,3 +241,7 @@ document.querySelector('a-scene').addEventListener('enter-vr', function () {
   document.querySelector("#piso_luz1").object3D.visible = true;
 
 });
+
+function Reiniciar(){
+  window.location.href = "./index.html";
+}
