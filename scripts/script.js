@@ -243,5 +243,6 @@ document.querySelector('a-scene').addEventListener('enter-vr', function () {
 });
 
 function Reiniciar(){
+  window.alert("Reiniciou")
   window.location.href = "./index.html";
 }
